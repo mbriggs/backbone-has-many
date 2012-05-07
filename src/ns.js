@@ -1,0 +1,2 @@
+/* global ICan */
+ICan = {};

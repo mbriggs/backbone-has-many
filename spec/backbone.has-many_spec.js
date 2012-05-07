@@ -51,4 +51,18 @@ describe("Has Many accessor", function(){
 })
 
 describe("Belongs To accessor", function(){
+  it("is cleared on initialize", function(){
+    expect((new Comment()).post).toBe(undefined)
+  })
+
+  it("is set on models added to collection", function(){
+    var post = new Post()
+      , comment = new Comment()
+
+    post.comments.add(comment)
+
+    expect(comment.post.cid).toBe(post.cid)
+  })
+
+  it("is removed on models removed from the collection")
 })
