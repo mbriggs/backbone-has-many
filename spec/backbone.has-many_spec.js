@@ -52,7 +52,7 @@ describe("Has Many accessor", function(){
 
 describe("Belongs To accessor", function(){
   it("is cleared on initialize", function(){
-    expect((new Comment()).post).toBe(undefined)
+    expect((new Comment()).post).toBe(null)
   })
 
   it("is set on models added to collection", function(){
@@ -64,5 +64,39 @@ describe("Belongs To accessor", function(){
     expect(comment.post.cid).toBe(post.cid)
   })
 
-  it("is removed on models removed from the collection")
+  it("is removed on models removed from the collection", function(){
+    var post = new Post()
+      , comment = new Comment()
+
+    post.comments.add(comment)
+    post.comments.remove(comment)
+
+    expect(comment.post).toBe(undefined)
+  })
+
+  it("adds back reference when comment is part of initialization", function(){
+    var post = new Post({ comments: [{foo: 'bar'}] })
+
+    expect(post.comments.length).toBe(1)
+    expect(post.comments.first().get('foo')).toBe('bar')
+  })
+})
+
+describe("serializeGraph", function(){
+  it("includes has many", function(){
+    var post = new Post({
+      name: 'foo'
+    , comments: [ {name: 1}
+                , {name: 2}
+                ]
+    })
+
+    var obj = post.serializeGraph()
+
+    expect(obj.name).toBe('foo')
+    expect(obj.comments.length).toBe(2)
+    expect(obj.comments[0].name).toBe(1)
+    expect(obj.comments[1].name).toBe(2)
+  })
+
 })

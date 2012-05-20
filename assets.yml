@@ -4,5 +4,5 @@ gzip_assets: false
 javascripts:
   backbone.has-many:
     - src/ns.js
-    - src/initialize.js
     - src/relations.js
+    - src/initialize.js

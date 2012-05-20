@@ -12,14 +12,13 @@ Limitations
 -----------
 
  - only has-many/belongs-to
+ - only supports a single parent/child relationship of a specific class
  - object graph serialization is only from the parent model down
  - no storage of related id fields
  - not 'threadsafe'
 
 if this doesn't meet your requirements, I would highly recommend
-checking out the excellent backbone-relational
-(https://github.com/PaulUithol/Backbone-relational), as it does all that
-and more.
+checking out the excellent backbone-relational (https://github.com/PaulUithol/Backbone-relational), as it does all that and more.
 
 Example (or What I am aiming for, since nothing is written yet)
 ---------------------------------------------------------------
